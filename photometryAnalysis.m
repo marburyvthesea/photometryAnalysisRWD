@@ -1,6 +1,6 @@
 %load photometry data
 
-fluorescenceData = readtable('F:\JJM\photometry_data\2023\SPRT\437_task_D2\2023_01_24-11_37_05\Fluorescence.csv');
+fluorescenceData = readtable('/Users/johnmarshall/Documents/Analysis/SPRT_data/Fluorescence.csv');
 
 %select events from the whole trace
 
