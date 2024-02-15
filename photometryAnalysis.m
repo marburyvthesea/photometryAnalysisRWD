@@ -1,11 +1,14 @@
 %load photometry data
 
-fluorescenceData = readtable('/Users/johnmarshall/Documents/Analysis/SPRT_data/Fluorescence.csv');
+fluorescenceData = readtable('/Users/johnmarshall/Documents/Analysis/ObservationalFCData/2024_01_18-15_55_50/Fluorescence.csv');
 
-%select events from the whole trace
+footShockTimes = readtable('/Users/johnmarshall/Documents/Analysis/ObservationalFCData/2024_01_18-15_55_50/Events.csv');
 
-midpointIndiciesOfEvents = [400, 600, 800];
-numberOfSamplesToSelectPerEvent = 30; 
+%%
+% select events from the whole trace
+
+midpointIndiciesOfEvents = [3150, 3250, 3350];
+numberOfSamplesToSelectPerEvent = 40; 
 
 %% select regions from trace
 % subregions from the trace will be stored in the "demonstrationEvents" structure

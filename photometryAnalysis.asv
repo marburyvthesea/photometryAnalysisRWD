@@ -1,13 +1,17 @@
 %load photometry data
 
-fluorescenceData = readtable('F:\JJM\photometry_data\2023\SPRT\437_task_D2\2023_01_24-11_37_05\Fluorescence.csv');
+fluorescenceData = readtable('/Users/johnmarshall/Documents/Analysis/ObservationalFCData/2024_01_18-15_55_50/Fluorescence.csv');
 
-%select events from the whole trace
+footShockTimes = readtable('/Users/johnmarshall/Documents/Analysis/ObservationalFCData/2024_01_18-15_55_50/Events.csv');
 
-midpointIndiciesOfEvents = [400, 600, 800];
+%%
+% select events from the whole trace
+
+midpointIndiciesOfEvents = [3068, 3118, 800];
 numberOfSamplesToSelectPerEvent = 30; 
 
 %% select regions from trace
+% subregions from the trace will be stored in the "demonstrationEvents" structure
 
 for i=1:size(midpointIndiciesOfEvents, 2)
 
@@ -17,14 +21,15 @@ for i=1:size(midpointIndiciesOfEvents, 2)
 
 end 
 
-%% normalize the values in each trace region selected to a baseline, here
-% the first half of the region, can play around with that
+%% normalize the values in each trace region selected to a baseline, 
+% here the first half of the region, can play around with that
+% normalized subregions will be stored in the "normalizedDemonstrationEvents" structure
 
 for i=1:size(midpointIndiciesOfEvents, 2)
 
     fieldName = ['region' num2str(i)];
 
-    normalizedRegion = demonstrationEvents.fieldName ;
+    normalizedRegion = demonstrationEvents.(fieldName) ;
 
     halfwayIndex = ceil(size(normalizedRegion, 1) / 2);
     % Preallocate array for means to optimize performance
@@ -39,6 +44,6 @@ for i=1:size(midpointIndiciesOfEvents, 2)
     end
     % normalizedRegion now contains the normalized values for columns 3 to 5
 
-    normalizedDemonstrationEvents.(fieldName) =
+    normalizedDemonstrationEvents.(fieldName) = normalizedRegion ; 
 
 end
